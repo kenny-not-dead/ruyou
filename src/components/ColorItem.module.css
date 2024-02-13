@@ -1,0 +1,11 @@
+.deleteIcon {
+  display: none;
+  position: absolute;
+  margin-top: -15px;
+  margin-left: 18px;
+  color: white;
+}
+
+.span:hover .deleteIcon {
+  display: block;
+}

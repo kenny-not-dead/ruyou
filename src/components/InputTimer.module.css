@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+}
+
+.inputwrapper {
+  width: 55px;
+  padding: 5px 0px;
+  font-size: 24px;
+  text-align: center;
+  color: black;
+
+  border: none;
+  border-bottom: 1px solid rgb(0, 0, 0);
+}

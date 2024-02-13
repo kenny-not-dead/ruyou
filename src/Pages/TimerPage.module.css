@@ -1,0 +1,33 @@
+.wrapper {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.counter {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.timerButton {
+  font-size: 24px;
+  color: black;
+  border: 1px solid black;
+  padding: 5px 30px;
+  margin: 20px 5px;
+  border-radius: 10px;
+  background: none;
+  &:hover {
+    background-color: #fece2248;
+  }
+}
+
+.finishP {
+  font-size: 32px;
+  color: red;
+}
