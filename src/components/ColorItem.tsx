@@ -13,10 +13,9 @@ export default function ColorItem(props: ColorItemType) {
   const Span = styled.button`
     cursor: pointer;
     border: 1px solid #000;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background: ${props.color};
-    transition: all 0.1s ease-in;
   `;
 
   const deleteItem = () => {
@@ -29,10 +28,8 @@ export default function ColorItem(props: ColorItemType) {
 
   return (
     <Span type="button" className={classes.span} onClick={changecurrentId}>
-      {" "}
       <span className={classes.deleteIcon} onClick={deleteItem}>
-        {" "}
-        X{" "}
+        X
       </span>
     </Span>
   );

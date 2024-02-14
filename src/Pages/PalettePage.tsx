@@ -21,11 +21,11 @@ export default function PalettePage() {
     if (showPicker && !currentId) {
       setTimeout(() => {
         dispatch(changeColor(color.hex));
-      }, 1000);
+      }, 0);
     } else if (showPicker && currentId) {
       setTimeout(() => {
         dispatch(changeCurrentColor({ currentId, color }));
-      }, 1000);
+      }, 0);
     }
   }, [color]);
 
@@ -38,27 +38,29 @@ export default function PalettePage() {
   };
 
   const changecurrentId = (id: string) => {
+    if (!showPicker) setShowPicker(true);
     setcurrentId(id);
   };
 
-  const pickerRef = useRef<any>(null);
+  const pickerRef = useRef<HTMLDivElement>(null);
+  const colorRef = useRef<any>(null);
 
-  /*
   useEffect(() => {
-    if (!showPicker) return;
-
     const handleClick = (e: MouseEvent) => {
-      if (!pickerRef.current) return;
-      if (!pickerRef.current.contains(e.target as Node)) {
-        setShowPicker(!showPicker);
+      if (
+        pickerRef.current &&
+        !colorRef.current.contains(e.target as HTMLElement) &&
+        !pickerRef.current.contains(e.target as HTMLElement)
+      ) {
+        setShowPicker(false);
       }
     };
-    document.addEventListener("click", handleClick);
+    document.addEventListener("click", handleClick, true);
     return () => {
-      document.removeEventListener("click", handleClick);
+      document.removeEventListener("click", handleClick, true);
     };
-  }, [showPicker, setShowPicker]);
-*/
+  }, []);
+
   const deleteItem = (id: string) => {
     dispatch(deleteColor(id));
   };
@@ -66,19 +68,21 @@ export default function PalettePage() {
   return (
     <div className={classes.wrapper}>
       <h2>PALETTE</h2>
-      {colors
-        ? colors.map((i: any) => {
-            return (
-              <ColorItem
-                key={i.id}
-                id={i.id}
-                color={i.color}
-                deleteItem={deleteItem}
-                changecurrentId={changecurrentId}
-              />
-            );
-          })
-        : ""}
+      <div ref={colorRef} className={classes.palettewrapper}>
+        {colors
+          ? colors.map((i: any) => {
+              return (
+                <ColorItem
+                  key={i.id}
+                  id={i.id}
+                  color={i.color}
+                  deleteItem={deleteItem}
+                  changecurrentId={changecurrentId}
+                />
+              );
+            })
+          : ""}
+      </div>
       <div className={classes.picketbtnwrapper}>
         <button className={classes.timerButton} onClick={createColorHandler}>
           Добавить цвет
